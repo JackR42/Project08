@@ -97,7 +97,8 @@ resource "azurerm_virtual_machine" "example" {
   location              = azurerm_resource_group.example.location
   resource_group_name   = azurerm_resource_group.example.name
   network_interface_ids = [azurerm_network_interface.example.id]
-  vm_size               = "Standard_DS14_v2"
+#  vm_size               = "Standard_DS14_v2"
+  vm_size               = "Standard_D2_v3"
 
   storage_image_reference {
     publisher = "MicrosoftSQLServer"
@@ -110,7 +111,8 @@ resource "azurerm_virtual_machine" "example" {
     name              = "${var.prefix}-OSDisk"
     caching           = "ReadOnly"
     create_option     = "FromImage"
-    managed_disk_type = "Premium_LRS"
+    managed_disk_type = "PremiumV2_LRS"
+#    managed_disk_type = "Premium_LRS"
   }
 
   os_profile {
