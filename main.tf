@@ -217,7 +217,7 @@ resource "azurerm_windows_virtual_machine" "main" {
 }
 
 resource "azurerm_mssql_virtual_machine" "sql" {
-  name                             = "${var.prefix}sql"
+  virtual_machine_id               = azurerm_virtual_machine.main.id
   resource_group_name              = azurerm_resource_group.main.name
   sql_license_type                 = "PAYG"
   r_services_enabled               = false
