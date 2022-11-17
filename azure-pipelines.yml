@@ -43,4 +43,10 @@ steps:
     provider: 'azurerm'
     command: 'apply'
     environmentServiceNameAzureRM: 'S1-Visual Studio Ultimate with MSDN(ae9cebbc-dc9d-49d8-a130-5b68cddefa15)'
-    
+
+- task: TerraformTaskV3@3
+  displayName: 'TF Decommision'
+  inputs:
+    provider: 'azurerm'
+    command: 'destroy'
+    environmentServiceNameAzureRM: 'S1-Visual Studio Ultimate with MSDN(ae9cebbc-dc9d-49d8-a130-5b68cddefa15)'
