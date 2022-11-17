@@ -199,14 +199,14 @@ resource "azurerm_windows_virtual_machine" "main" {
   resource_group_name             = azurerm_resource_group.main.name
   location                        = azurerm_resource_group.main.location
   size                            = "Standard_F2"
-  admin_username                  = "myuser"
-  admin_password                  = "P@sSW0rD12345!"
+  admin_username                  = "admindba"
+  admin_password                  = "ABCabc123.42"
   network_interface_ids = [azurerm_network_interface.mytestnic.id]
 
   source_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
-    sku       = "2016-Datacenter"
+    sku       = "2022-Datacenter"
     version   = "latest"
   }
 
