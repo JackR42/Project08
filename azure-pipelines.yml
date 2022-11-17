@@ -29,3 +29,18 @@ steps:
     backendAzureRmStorageAccountName: 'storageaccounts1core'
     backendAzureRmContainerName: 'containers1coretf'
     backendAzureRmKey: 'project08-main.tf'
+
+- task: TerraformTaskV3@3
+  displayName: 'TF Plan'
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    environmentServiceNameAzureRM: 'S1-Visual Studio Ultimate with MSDN(ae9cebbc-dc9d-49d8-a130-5b68cddefa15)'
+
+- task: TerraformTaskV3@3
+  displayName: 'TF Deploy'
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    environmentServiceNameAzureRM: 'S1-Visual Studio Ultimate with MSDN(ae9cebbc-dc9d-49d8-a130-5b68cddefa15)'
+    
