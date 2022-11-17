@@ -1,3 +1,4 @@
+# https://faun.pub/using-terraform-to-configure-sql-server-on-azure-vm-7cdba2c1a3b3
 provider "azurerm" {
   features {}
 }
