@@ -16,9 +16,6 @@ stages:
   jobs:
   - job:
     steps:
-
-    - task: TerraformInstaller@0
-      displayName: 'Terraform install'
     - task: TerraformInstaller@0
       displayName: 'TF Install'
       inputs:
