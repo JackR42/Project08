@@ -14,8 +14,18 @@ pool:
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
+- task: TerraformInstaller@0
+  displayName: 'TF Install'
+  inputs:
+    terraformVersion: 'latest'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: TerraformTaskV3@3
+  displayName: 'TF Init'
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    backendServiceArm: 'S1-Visual Studio Ultimate with MSDN(ae9cebbc-dc9d-49d8-a130-5b68cddefa15)'
+    backendAzureRmResourceGroupName: 'S1-RG-CORE'
+    backendAzureRmStorageAccountName: 'storageaccounts1core'
+    backendAzureRmContainerName: 'containers1coretf'
+    backendAzureRmKey: 'project08-main.tf'
