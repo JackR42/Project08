@@ -1,4 +1,5 @@
 # https://www.ntweekly.com/2022/07/25/how-to-create-a-bastion-host-on-azure-with-terraform/
+
 # Starter pipeline
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
