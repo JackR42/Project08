@@ -6,7 +6,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "S1-${var.prefix}-RG"
+  name     = "S1-Project08-RG"
   location = var.location
 }
 
