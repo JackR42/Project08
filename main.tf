@@ -115,8 +115,10 @@ resource "azurerm_virtual_machine" "example" {
 
   os_profile {
     computer_name  = "winhost01"
-    admin_username = "exampleadmin"
-    admin_password = "Password1234!"
+    admin_username = "${var.admin}"
+    admin_password = "${var.adminpwd}"
+#    admin_username = "exampleadmin"
+#    admin_password = "Password1234!"
   }
 
   os_profile_windows_config {
@@ -124,4 +126,9 @@ resource "azurerm_virtual_machine" "example" {
     provision_vm_agent        = true
     enable_automatic_upgrades = true
   }
+}
+
+resource "azurerm_mssql_virtual_machine" "example" {
+  virtual_machine_id = azurerm_virtual_machine.example.id
+  sql_license_type   = "PAYG"
 }
