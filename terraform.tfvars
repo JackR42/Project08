@@ -1,2 +1,5 @@
 prefix = "Project08"
 LOCATION = "westeurope"
+VM-NAME = "VM1"
+ADMIN = "admindba"
+ADMIN-PWD = "ABCabc123.42"
