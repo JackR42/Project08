@@ -97,8 +97,8 @@ resource "azurerm_virtual_machine" "example" {
   location              = azurerm_resource_group.example.location
   resource_group_name   = azurerm_resource_group.example.name
   network_interface_ids = [azurerm_network_interface.example.id]
-#  vm_size               = "Standard_DS14_v2"
-  vm_size               = "Standard_D2_v3"
+  vm_size               = "Standard_DS14_v2"
+#  vm_size               = "Standard_D2_v3"
 
   storage_image_reference {
     publisher = "MicrosoftSQLServer"
@@ -118,8 +118,6 @@ resource "azurerm_virtual_machine" "example" {
     computer_name  = "winhost01"
     admin_username = "${var.admin}"
     admin_password = "${var.adminpwd}"
-#    admin_username = "exampleadmin"
-#    admin_password = "Password1234!"
   }
 
   os_profile_windows_config {
