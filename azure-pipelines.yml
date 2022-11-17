@@ -51,7 +51,17 @@ stages:
 
 - stage: TF_DECOMMISSION
   jobs:
+  - job: ApproveDecom
+    pool: server
+    steps:
+    - task: ManualValidation@0
+      displayName: TF Approve
+      inputs:
+        instructions: 'Stage TF_DECOMMISSION, do you approve?'
+
   - job:
+    dependsOn: ApproveDecom
+    condition: Succeeded()
     steps:
     - task: TerraformInstaller@0
       displayName: 'Terraform install'
