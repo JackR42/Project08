@@ -20,12 +20,12 @@ resource "azurerm_mssql_virtual_machine" "azurerm_sqlvmmanagement" {
 
     # The storage_settings block supports the following:
     data_settings {
-      default_file_path = var.default_file_path_data # (Required) The SQL Server default path
+      default_file_path = var.{default_file_path_data} # (Required) The SQL Server default path
       luns              = [0]                        #azurerm_virtual_machine_data_disk_attachment.datadisk_attach[count.index].lun]
     }
 
     log_settings {
-      default_file_path = var.default_file_path_log # (Required) The SQL Server default path
+      default_file_path = var.{default_file_path_log} # (Required) The SQL Server default path
       luns              = [1]                       #azurerm_virtual_machine_data_disk_attachment.logdisk_attach[count.index].lun] # (Required) A list of Logical Unit Numbers for the disks.
     }
 
