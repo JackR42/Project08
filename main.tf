@@ -10,6 +10,7 @@ terraform {
 }
 
 resource "azurerm_resource_group" "example" {
-  name = "S1-Project08-RG"
-  location = "westeurope"
+  name = "S1-${var.prefix}-RG"
+  location = var.location
+#  location = "westeurope"
 }
