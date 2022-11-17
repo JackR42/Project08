@@ -91,3 +91,37 @@ resource "azurerm_network_interface_security_group_association" "example" {
   network_interface_id      = azurerm_network_interface.example.id
   network_security_group_id = azurerm_network_security_group.example.id
 }
+
+resource "azurerm_virtual_machine" "example" {
+  name                  = "${var.prefix}-VM"
+  location              = azurerm_resource_group.example.location
+  resource_group_name   = azurerm_resource_group.example.name
+  network_interface_ids = [azurerm_network_interface.example.id]
+  vm_size               = "Standard_DS14_v2"
+
+  storage_image_reference {
+    publisher = "MicrosoftSQLServer"
+    offer     = "SQL2017-WS2016"
+    sku       = "SQLDEV"
+    version   = "latest"
+  }
+
+  storage_os_disk {
+    name              = "${var.prefix}-OSDisk"
+    caching           = "ReadOnly"
+    create_option     = "FromImage"
+    managed_disk_type = "Premium_LRS"
+  }
+
+  os_profile {
+    computer_name  = "winhost01"
+    admin_username = "exampleadmin"
+    admin_password = "Password1234!"
+  }
+
+  os_profile_windows_config {
+    timezone                  = "Pacific Standard Time"
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+  }
+}
