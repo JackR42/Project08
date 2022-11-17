@@ -8,46 +8,46 @@ terraform {
 
 #Create Azure Resource Group
 resource "azurerm_resource_group" "main" {
-#  name     = "${var.prefix}-resources"
-  name = "S1-RG-Project08"
+#  name     = "${var.prefix}resources"
+  name = "S1-${var.prefix}RG"
   location = var.location
 }
 #Create Azure Virtual Network
 resource "azurerm_virtual_network" "main" {
-  name                = "${var.prefix}-network"
+  name                = "${var.prefix}network"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 }
 #Create Azure VNet Subnet
 resource "azurerm_subnet" "internal" {
-  name                 = "internal"
+  name                 = "${var.prefix}internal"
   resource_group_name  = azurerm_resource_group.main.name
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefixes     = ["10.0.2.0/24"]
 }
 #Create Azure Bastion Subnet
 resource "azurerm_subnet" "AzureBastionSubnet" {
-  name                ="AzureBastionSubnet"
+  name                ="${var.prefix}AzureBastionSubnet"
   resource_group_name = azurerm_resource_group.main.name
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefixes     = ["10.0.3.0/27"]
 }
 #Create Azure Network Interface Card
 resource "azurerm_network_interface" "mytestnic" {
-  name                = "nic-Project08"
+  name                = "${var.prefix}nic"
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
 
   ip_configuration {
-    name                          = "internal"
+    name                          = "${var.prefix}internal"
     subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Dynamic"
   }
 }
 #Create Azure Network Security Group With The Appropriate Security Rules
 resource "azurerm_network_security_group" "mytestnsg" {
-  name                          = "nsg-Project08"
+  name                          = "${var.prefix}nsg"
   location                      = azurerm_resource_group.main.location
   resource_group_name           = azurerm_resource_group.main.name
 
@@ -59,7 +59,7 @@ resource "azurerm_network_security_group" "mytestnsg" {
         protocol                   = "Tcp"
         source_port_range          = "*"
         destination_port_range     = "443"
-        source_address_prefix      = "Internet"
+        source_address_prefix      = "${var.prefix}Internet"
         destination_address_prefix = "*"
     }
 
@@ -195,7 +195,7 @@ resource "azurerm_network_interface_security_group_association" "nsgassoc" {
 }
 #Create Azure VM - Standard F2 size
 resource "azurerm_windows_virtual_machine" "main" {
-  name                            = "vm-${var.prefix}"
+  name                            = "${var.prefix}vm"
   resource_group_name             = azurerm_resource_group.main.name
   location                        = azurerm_resource_group.main.location
   size                            = "Standard_F2"
