@@ -11,42 +11,51 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-- task: TerraformInstaller@0
-  displayName: 'TF Install'
-  inputs:
-    terraformVersion: 'latest'
+stages:
+- stage: TF_DEPLOY
+  jobs:
+  - job:
+    steps:
 
-- task: TerraformTaskV3@3
-  displayName: 'TF Init'
-  inputs:
-    provider: 'azurerm'
-    command: 'init'
-    backendServiceArm: 'S1-Visual Studio Ultimate with MSDN(ae9cebbc-dc9d-49d8-a130-5b68cddefa15)'
-    backendAzureRmResourceGroupName: 'S1-RG-CORE'
-    backendAzureRmStorageAccountName: 'storageaccounts1core'
-    backendAzureRmContainerName: 'containers1coretf'
-    backendAzureRmKey: 'project08-main.tf'
+    - task: TerraformInstaller@0
+      displayName: 'Terraform install'
+    - task: TerraformInstaller@0
+      displayName: 'TF Install'
+      inputs:
+        terraformVersion: 'latest'
 
-- task: TerraformTaskV3@3
-  displayName: 'TF Plan'
-  inputs:
-    provider: 'azurerm'
-    command: 'plan'
-    environmentServiceNameAzureRM: 'S1-Visual Studio Ultimate with MSDN(ae9cebbc-dc9d-49d8-a130-5b68cddefa15)'
+    - task: TerraformTaskV3@3
+      displayName: 'TF Init'
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'S1-Visual Studio Ultimate with MSDN(ae9cebbc-dc9d-49d8-a130-5b68cddefa15)'
+        backendAzureRmResourceGroupName: 'S1-RG-CORE'
+        backendAzureRmStorageAccountName: 'storageaccounts1core'
+        backendAzureRmContainerName: 'containers1coretf'
+        backendAzureRmKey: 'project08-main.tf'
 
-- task: TerraformTaskV3@3
-  displayName: 'TF Deploy'
-  inputs:
-    provider: 'azurerm'
-    command: 'apply'
-    environmentServiceNameAzureRM: 'S1-Visual Studio Ultimate with MSDN(ae9cebbc-dc9d-49d8-a130-5b68cddefa15)'
+    - task: TerraformTaskV3@3
+      displayName: 'TF Plan'
+      inputs:
+        provider: 'azurerm'
+        command: 'plan'
+        environmentServiceNameAzureRM: 'S1-Visual Studio Ultimate with MSDN(ae9cebbc-dc9d-49d8-a130-5b68cddefa15)'
 
-- task: TerraformTaskV3@3
-  displayName: 'TF Decommision'
-  inputs:
-    provider: 'azurerm'
-    command: 'destroy'
-    environmentServiceNameAzureRM: 'S1-Visual Studio Ultimate with MSDN(ae9cebbc-dc9d-49d8-a130-5b68cddefa15)'
+    - task: TerraformTaskV3@3
+      displayName: 'TF Deploy'
+      inputs:
+        provider: 'azurerm'
+        command: 'apply'
+        environmentServiceNameAzureRM: 'S1-Visual Studio Ultimate with MSDN(ae9cebbc-dc9d-49d8-a130-5b68cddefa15)'
+
+- stage: TF_DECOMMISSION
+  jobs:
+  - job:
+    steps:
+    - task: TerraformTaskV3@3
+      displayName: 'TF Decommision'
+      inputs:
+        provider: 'azurerm'
+        command: 'destroy'
+        environmentServiceNameAzureRM: 'S1-Visual Studio Ultimate with MSDN(ae9cebbc-dc9d-49d8-a130-5b68cddefa15)'
