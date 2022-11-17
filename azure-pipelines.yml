@@ -53,6 +53,24 @@ stages:
   jobs:
   - job:
     steps:
+    - task: TerraformInstaller@0
+      displayName: 'Terraform install'
+    - task: TerraformInstaller@0
+      displayName: 'TF Install'
+      inputs:
+        terraformVersion: 'latest'
+
+    - task: TerraformTaskV3@3
+      displayName: 'TF Init'
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'S1-Visual Studio Ultimate with MSDN(ae9cebbc-dc9d-49d8-a130-5b68cddefa15)'
+        backendAzureRmResourceGroupName: 'S1-RG-CORE'
+        backendAzureRmStorageAccountName: 'storageaccounts1core'
+        backendAzureRmContainerName: 'containers1coretf'
+        backendAzureRmKey: 'project08-main.tf'
+
     - task: TerraformTaskV3@3
       displayName: 'TF Decommision'
       inputs:
