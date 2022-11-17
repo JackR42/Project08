@@ -14,11 +14,6 @@ resource "azurerm_resource_group" "example" {
   location = var.location
 }
 
-resource "azurerm_resource_group" "example" {
-  name     = "${var.prefix}-resources"
-  location = var.location
-}
-
 resource "azurerm_virtual_network" "example" {
   name                = "${var.prefix}-VN"
   address_space       = ["10.0.0.0/16"]
