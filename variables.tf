@@ -1,99 +1,81 @@
-variable "prefix" {
-  description = "The prefix to be used for all resources."
-}
+# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine
 
-variable "LOCATION" {
-  description = "Azure Region"
+variable "resource_group_name" {
+  description = "name of the Resource Group in which the Virtual Machine should exist."
 }
-variable "SREG" {
-  description = "Sub Region code."
+variable "location" {
+  description = "Azure Region where the Virtual Machine exists."
 }
-variable "ENVTYPE" {
-  description = "The environment type (e.g. NPR, PRD)."
+variable "vm_subnet_id" {
+  description = "ID of the subnet the VM should be a member of."
 }
-variable "VNET" {
-  description = "The name of the shared service VNET"
+variable "vm_name" {
+  description = "name of the Virtual Machine. "
 }
-variable "NETWORK_RESOURCE_GROUP" {
-  description = "The name of the Network resource group"
+variable "computer_name" {
+  description = "name of the Virtual Machine."
 }
-variable "SQL_SUBNET_ADDRESS" {
-  description = "CIDR for the Gateway Subnet"
+variable "vm_size" {
+  description = "size of the Virtual Machine."
 }
-variable "ADMIN_PASSWORD" {
-  description = "Admin Password for the VM's"
-  sensitive   = true
+variable "static_ip_address" {
+  description = "Static Ip address"
 }
-variable "APP" {
-  description = "Purpose of the infrastructure"
-}
-# Tag Variables
-variable "TAG_BUSINESS_UNIT" {
-  description = "Tag to be added to the resource describing the business unit"
-}
-variable "TAG_CREATED_DATE" {
-  description = "Tag to be added to the resource with the date of creation"
-}
-variable "ACTIVITY_TAG" {
+variable "activity_tag" {
   description = "Purpose of the deployment, e.g. AD, SQL, Application"
 }
-# VM Vars
-variable "VM_SIZE_APP" {
-  description = "VM Size App Server"
+variable "admin_password" {
+  description = "Local admin password on the virtual machine."
+  sensitive   = true
 }
-variable "VM_SIZE_SQL" {
-  description = "VM Size SQL Server"
+variable "admin_username" {
+  description = "Local admin username on the virtual machine."
+  sensitive   = true
 }
-variable "VM_OS_DISK_DELETE_FLAG" {
+variable "vm_os_disk_delete_flag" {
   description = "Should the OS Disk (either the Managed Disk / VHD Blob) be deleted when the Virtual Machine is destroyed?"
-  default     = "true"
+  default     = true
 }
-variable "VM_DATA_DISK_DELETE_FLAG" {
+variable "vm_data_disk_delete_flag" {
   description = "Should the Data Disks (either the Managed Disks / VHD Blobs) be deleted when the Virtual Machine is destroyed?"
-  default     = "true"
+  default     = true
 }
-variable "PUBLISHER_APP" {
+variable "network_security_group_id" {
+  description = "NSG ID"
+  default     = ""
+}
+variable "tags" {
+  description = "Map of tags"
+}
+variable "availability_set_id" {
+  description = "ID of the availability set"
+}
+variable "storage_uri" {
+  description = "Storage account URI for boot diagnostics"
+}
+variable "publisher" {
   description = "image publisher"
 }
-variable "OFFER_APP" {
+variable "offer" {
   description = "image offer"
 }
-variable "SKU_APP" {
+variable "sku" {
   description = "sku of the image"
 }
-variable "IMAGE_VERSION_APP" {
+variable "image_version" {
   description = "version for the image"
 }
-variable "SQLADMINPWD" {
-  description = "SQL admin password"
+variable "sql_connectivity_update_password" {
+  description = "sql password"
   sensitive   = true
 }
-variable "SQLADMIN" {
-  description = "SQL admin username"
+variable "sql_connectivity_update_username" {
+  description = "sql username"
   sensitive   = true
 }
-variable "SQLDATAFILEPATH" {
-  description = "SQL data file path"
+variable "default_file_path_data" {
+  description = "SQL Data file path"
 }
-variable "SQLLOGFILEPATH" {
-  description = "SQL log file path"
-}
-variable "PUBLISHER_SQL" {
-  description = "image publisher"
-}
-variable "OFFER_SQL" {
-  description = "image offer"
-}
-variable "SKU_SQL" {
-  description = "sku of the image"
-}
-variable "IMAGE_VERSION_SQL" {
-  description = "version for the image"
-}
-#LOG ANALYTICS
-variable "LAW" {
-  description = "Log analytics workspace"
-}
-variable "LAWRG" {
-  description = "Log analytics workspace resource group"
+variable "default_file_path_log" {
+  description = "SQL Log file path"
 }
