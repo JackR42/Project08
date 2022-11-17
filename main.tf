@@ -10,14 +10,14 @@ resource "azurerm_resource_group" "example" {
   location = var.location
 }
 
-/*
-  resource "azurerm_virtual_network" "example" {
+resource "azurerm_virtual_network" "example" {
   name                = "${var.prefix}-VN"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
 }
 
+/*
 resource "azurerm_subnet" "example" {
   name                 = "${var.prefix}-SN"
   resource_group_name  = azurerm_resource_group.example.name
