@@ -216,13 +216,13 @@ resource "azurerm_windows_virtual_machine" "main" {
   }
 }
 
-#resource "azurerm_mssql_virtual_machine" "sql" {
-#  name                = "example-vm" xxx
-#  resource_group_name = "example-resources"
-#  sql_license_type                 = "PAYG"
-#  r_services_enabled               = true
-#  sql_connectivity_port            = 1433
-#  sql_connectivity_type            = "PRIVATE"
-#  sql_connectivity_update_password = "Password1234!"
-#  sql_connectivity_update_username = "sqllogin"
-#}
+resource "azurerm_mssql_virtual_machine" "sql" {
+  name                             = "${var.prefix}sql"
+  resource_group_name              = azurerm_resource_group.main.name
+  sql_license_type                 = "PAYG"
+  r_services_enabled               = false
+  sql_connectivity_port            = 1433
+  sql_connectivity_type            = "PRIVATE"
+  sql_connectivity_update_password = "ABCabc123.42"
+  sql_connectivity_update_username = "admindba"
+}
