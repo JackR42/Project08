@@ -10,7 +10,8 @@ resource "azurerm_resource_group" "example" {
   location = var.location
 }
 
-resource "azurerm_virtual_network" "example" {
+/*
+  resource "azurerm_virtual_network" "example" {
   name                = "${var.prefix}-VN"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.example.location
@@ -126,3 +127,5 @@ resource "azurerm_mssql_virtual_machine" "example" {
   virtual_machine_id = azurerm_virtual_machine.example.id
   sql_license_type   = "PAYG"
 }
+*/
+  
