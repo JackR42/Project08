@@ -6,14 +6,6 @@ terraform {
   backend "azurerm" {}
 }
 
-#resource "azurerm_resource_group" "project
-
-
-" {
-#  name = "S1-RG-Project08"
-#  location = "westeurope"
-#}
-
 #Create Azure Resource Group
 resource "azurerm_resource_group" "main" {
 #  name     = "${var.prefix}-resources"
