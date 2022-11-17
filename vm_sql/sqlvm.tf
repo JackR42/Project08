@@ -47,8 +47,8 @@ module "windows_server_vm_sql" {
   workspaceKey                     = azurerm_log_analytics_workspace.law.primary_shared_key
   sql_connectivity_update_password = var.SQLADMINPWD
   sql_connectivity_update_username = var.SQLADMIN
-  default_file_path_data           = var.{SQLDATAFILEPATH}
-  default_file_path_log            = var.{SQLLOGFILEPATH}
+  default_file_path_data           = "${var.SQLDATAFILEPATH}"
+  default_file_path_log            = "${var.SQLLOGFILEPATH}"
 
   tags = local.tags
 }
