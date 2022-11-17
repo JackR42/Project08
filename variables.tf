@@ -9,7 +9,7 @@ variable "prefix" {
   description = "The prefix used for all resources."
 }
 
-variable "vm-name" {
+variable "vmname" {
   description = "The of the Virtual Machine"
 }
 
@@ -17,6 +17,6 @@ variable "admin" {
   description = "The name of the Administrator."
 }
 
-variable "admin-pwd" {
+variable "adminpwd" {
   description = "The password of the Administrator."
 }
