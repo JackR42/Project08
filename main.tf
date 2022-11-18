@@ -148,7 +148,7 @@ resource "azurerm_mssql_virtual_machine" "example" {
 #  resource_group_name = azurerm_resource_group.example.name
 #}
 
-resource "azurerm_subnet" "example" {
+resource "azurerm_subnet" "bastionexample" {
   name                 = "AzureBastionSubnet"
   resource_group_name  = azurerm_resource_group.example.name
   virtual_network_name = azurerm_virtual_network.example.name
@@ -163,14 +163,14 @@ resource "azurerm_subnet" "example" {
 #  sku                 = "Standard"
 #}
 
-resource "azurerm_bastion_host" "example" {
+resource "azurerm_bastion_host" "bastionexampleexample" {
   name                = "examplebastion"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
 
   ip_configuration {
     name                 = "configuration"
-    subnet_id            = azurerm_subnet.example.id
+    subnet_id            = azurerm_subnet.bastionexampleexample.id
     public_ip_address_id = azurerm_public_ip.example.id
   }
 }
