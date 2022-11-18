@@ -163,7 +163,7 @@ resource "azurerm_subnet" "bastionexample" {
 #  sku                 = "Standard"
 #}
 
-resource "azurerm_bastion_host" "bastionexampleexample" {
+resource "azurerm_bastion_host" "bastionexample" {
   name                = "examplebastion"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
