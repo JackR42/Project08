@@ -170,7 +170,7 @@ resource "azurerm_bastion_host" "bastionexampleexample" {
 
   ip_configuration {
     name                 = "configuration"
-    subnet_id            = azurerm_subnet.bastionexampleexample.id
+    subnet_id            = azurerm_subnet.bastionexample.id
     public_ip_address_id = azurerm_public_ip.example.id
   }
 }
