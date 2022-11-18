@@ -103,7 +103,7 @@ resource "azurerm_virtual_machine" "example" {
   storage_image_reference {
     publisher = "MicrosoftSQLServer"
  #   offer     = "SQL2017-WS2016"
-    offer     = "SQL2022-WS2022"
+    offer     = "SQL2019-WS2019"
     sku       = "SQLDEV"
     version   = "latest"
   }
@@ -112,7 +112,7 @@ resource "azurerm_virtual_machine" "example" {
     name              = "${var.prefix}-OSDisk"
     caching           = "ReadOnly"
     create_option     = "FromImage"
-    managed_disk_type = "Premium_SSD_LRS"
+    managed_disk_type = "Premium_LRS"
   }
 
   os_profile {
