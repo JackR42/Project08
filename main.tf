@@ -99,6 +99,7 @@ resource "azurerm_virtual_machine" "example" {
   network_interface_ids = [azurerm_network_interface.example.id]
   vm_size               = "Standard_DS14_v2"
 #  vm_size               = "Standard_D2_v3"
+  delete_os_disk_on_termination = "true"
 
   storage_image_reference {
     publisher = "MicrosoftSQLServer"
