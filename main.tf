@@ -112,7 +112,7 @@ resource "azurerm_virtual_machine" "example" {
     name              = "${var.prefix}-OSDisk"
     caching           = "ReadOnly"
     create_option     = "FromImage"
-    managed_disk_type = "Premium_LRS"
+    managed_disk_type = "Premium_SSD_LRS"
   }
 
   os_profile {
