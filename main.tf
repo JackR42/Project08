@@ -55,7 +55,8 @@ resource "azurerm_network_security_rule" "RDPRule" {
   protocol                    = "Tcp"
   source_port_range           = "*"
   destination_port_range      = 3389
-  source_address_prefix       = "167.220.255.0/25"
+  source_address_prefix       = "*"
+#  source_address_prefix       = "167.220.255.0/25"
   destination_address_prefix  = "*"
   network_security_group_name = azurerm_network_security_group.example.name
 }
