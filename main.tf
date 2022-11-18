@@ -55,8 +55,8 @@ resource "azurerm_network_security_rule" "RDPRule" {
   protocol                    = "Tcp"
   source_port_range           = "*"
   destination_port_range      = 3389
-  source_address_prefix       = "*"
-#  source_address_prefix       = "167.220.255.0/25"
+#  source_address_prefix       = "*"
+  source_address_prefix       = "167.220.255.0/25"
   destination_address_prefix  = "*"
   network_security_group_name = azurerm_network_security_group.example.name
 }
@@ -136,41 +136,4 @@ resource "azurerm_mssql_virtual_machine" "example" {
 }
 
 # BASTION
-#resource "azurerm_resource_group" "example" {
-#  name     = "example-resources"
-#  location = "West Europe"
-#}
-
-#resource "azurerm_virtual_network" "example" {
-#  name                = "examplevnet"
-#  address_space       = ["192.168.1.0/24"]
-#  location            = azurerm_resource_group.example.location
-#  resource_group_name = azurerm_resource_group.example.name
-#}
-
-resource "azurerm_subnet" "bastionexample" {
-  name                 = "AzureBastionSubnet"
-  resource_group_name  = azurerm_resource_group.example.name
-  virtual_network_name = azurerm_virtual_network.example.name
-  address_prefixes     = ["192.168.1.224/27"]
-}
-
-resource "azurerm_public_ip" "example" {
-  name                = "examplepip"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
-  allocation_method   = "Static"
-  sku                 = "Standard"
-}
-
-resource "azurerm_bastion_host" "bastionexample" {
-  name                = "examplebastion"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
-
-  ip_configuration {
-    name                 = "configuration"
-    subnet_id            = azurerm_subnet.bastionexample.id
-    public_ip_address_id = azurerm_public_ip.example.id
-  }
-}
+# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/bastion_host
