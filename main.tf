@@ -103,8 +103,8 @@ resource "azurerm_virtual_machine" "example" {
   storage_image_reference {
     publisher = "MicrosoftSQLServer"
  #   offer     = "SQL2017-WS2016"
-    offer     = "SQL2019-WS2019"
-    sku       = "SQLDEV"
+    offer     = "SQL2022-WS2022"
+    sku       = "SQLDEV-gen2"
     version   = "latest"
   }
 
